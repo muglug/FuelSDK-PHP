@@ -2,6 +2,16 @@
 require('soap-wsse.php');
 require('JWT.php');
 
+class ET_BaseObject {
+	public  $authStub, $props, $filter, $organizationId, $organizationKey;
+	protected $obj, $lastRequestID;
+}
+
+class ET_BaseObjectRest {
+	public  $authStub, $props, $organizationId, $organizationKey;
+	protected  $endpoint, $urlProps, $urlPropsRequired;
+}
+
 class ET_Client extends SoapClient {
 	public $packageName, $packageFolders, $parentFolders;
 	private $wsdlLoc, $debugSOAP, $lastHTTPCode, $clientId, 
@@ -1177,16 +1187,6 @@ class ET_Asset extends ET_CUDSupportRest {
 	public function delete() {	
 		return null;
 	}
-}
-
-class ET_BaseObject {
-	public  $authStub, $props, $filter, $organizationId, $organizationKey;
-	protected $obj, $lastRequestID;
-}
-
-class ET_BaseObjectRest {
-	public  $authStub, $props, $organizationId, $organizationKey;
-	protected  $endpoint, $urlProps, $urlPropsRequired;
 }
 
 class ET_GetSupport extends ET_BaseObject{
